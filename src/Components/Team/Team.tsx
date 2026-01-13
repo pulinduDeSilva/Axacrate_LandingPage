@@ -1,7 +1,13 @@
 import styles from "./Team.module.css"
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import profile from "../../assets/prof.jpg";
+import daniru from "../../assets/daniru.jpg";
+import ahintha from "../../assets/ahintha.jpg";
+import sheshan from "../../assets/sheshan.jpeg";
+import aatif from "../../assets/aatif.png";
+import bhanuka from "../../assets/bhanuka.jpeg";
+import pulindu from "../../assets/pulindu.jpeg";
+
 
 function Features() {
 
@@ -46,50 +52,50 @@ function Features() {
         <div className={styles["team"]}>
 
           <div className={styles["card"]}>
-            <img src={profile} alt="John" />
+            <img src={bhanuka} alt="John" />
             <div className="card-content">
-              <h1>John Doe</h1>
-              <p className={styles["profile"]}>CEO & Founder, Example</p>
+              <h1>Isith Bhanuka</h1>
+              <p className={styles["profile"]}></p>
             </div>
           </div>
 
           <div className={styles["card"]}>
-            <img src={profile} alt="John" />
+            <img src={daniru} alt="John" />
             <div className="card-content">
-              <h1>John Doe</h1>
-              <p className={styles["profile"]}>CEO & Founder, Example</p>
+              <h1>Daniru Senarathne</h1>
+              <p className={styles["profile"]}></p>
             </div>
           </div>
 
           <div className={styles["card"]}>
-            <img src={profile} alt="John" />
+            <img src={aatif} alt="John" />
             <div className="card-content">
-              <h1>John Doe</h1>
-              <p className={styles["profile"]}>CEO & Founder, Example</p>
+              <h1>Aatif Noor</h1>
+              <p className={styles["bhanuka"]}></p>
             </div>
           </div>
 
           <div className={styles["card"]}>
-            <img src={profile} alt="John" />
+            <img src={pulindu} alt="John" />
             <div className="card-content">
-              <h1>John Doe</h1>
-              <p className={styles["profile"]}>CEO & Founder, Example</p>
+              <h1>Pulindu Vidmal</h1>
+              <p className={styles["profile"]}></p>
             </div>
           </div>
 
           <div className={styles["card"]}>
-            <img src={profile} alt="John" />
+            <img src={ahintha} alt="John" />
             <div className="card-content">
-              <h1>John Doe</h1>
-              <p className={styles["profile"]}>CEO & Founder, Example</p>
+              <h1>Ahintha jayamanna</h1>
+              <p className={styles["profile"]}></p>
             </div>
           </div>
 
           <div className={styles["card"]}>
-            <img src={profile} alt="John" />
+            <img src={sheshan} alt="John" />
             <div className="card-content">
-              <h1>John Doe</h1>
-              <p className={styles["profile"]}>CEO & Founder, Example</p>
+              <h1>Sheshan Thisal</h1>
+              <p className={styles["profile"]}></p>
             </div>
           </div>
 
