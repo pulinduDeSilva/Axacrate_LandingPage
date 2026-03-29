@@ -26,7 +26,7 @@ const steps = [
 
 function Workflow() {
   useGSAP(() => {
-    const split = new SplitText("#workflowTitle", { type: "chars" });
+    const split = new SplitText("#workflowTitle", { type: "words, chars" });
     gsap.fromTo(
       split.chars,
       { opacity: 0, yPercent: 130 },

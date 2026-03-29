@@ -49,7 +49,7 @@ function Features() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const textSplit = new SplitText("#aboutText", { type: "chars" });
+    const textSplit = new SplitText("#aboutText", { type: "words, chars" });
     gsap.fromTo(
       textSplit.chars,
       { opacity: 0, yPercent: 130 },

@@ -22,7 +22,7 @@ const members = [
 
 function Team() {
   useGSAP(() => {
-    const split = new SplitText("#teamTitle", { type: "chars" });
+    const split = new SplitText("#teamTitle", { type: "words, chars" });
     gsap.fromTo(
       split.chars,
       { opacity: 0, yPercent: 130 },
