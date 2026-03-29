@@ -161,10 +161,9 @@
     width: min(560px, 100%);
   }
 
-  .card-image-wrap {
-    flex: none;
-    height: 240px;
-  }
+  .card-image-wrap { 
+    flex: none; 
+    height: clamp(160px, 30vw, 240px); }
 
   .text-wrapper {
     padding: 2rem;
