@@ -26,7 +26,15 @@ function App() {
       effects: true,
     });
 
-    return () => smoother.kill();
+    // Critical: refresh after all components have mounted and painted,
+    // so pinned sections (the horizontal features scroll) calculate
+    // their real DOM offsets correctly before any nav anchor is clicked.
+    const id = setTimeout(() => ScrollTrigger.refresh(), 300);
+
+    return () => {
+      clearTimeout(id);
+      smoother.kill();
+    };
   }, []);
 
   return (
