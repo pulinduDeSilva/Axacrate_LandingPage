@@ -70,6 +70,10 @@
   margin: 0;
 }
 
+@media (max-width: 1024px) {
+  .team { grid-template-columns: repeat(3, 1fr); max-width: 680px; }
+}
+
 @media (max-width: 768px) {
   .team { grid-template-columns: repeat(2, 1fr); max-width: 480px; }
   .team-section { padding: 6rem 1.5rem; }
