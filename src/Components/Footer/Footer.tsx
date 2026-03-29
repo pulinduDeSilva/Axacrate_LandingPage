@@ -1,4 +1,14 @@
 import styles from "./Footer.module.css";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+
+function scrollTo(id: string) {
+  const smoother = ScrollSmoother.get();
+  if (smoother) {
+    smoother.scrollTo(id, true, "top top");
+  } else {
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+  }
+}
 
 function Footer() {
   return (
@@ -14,14 +24,14 @@ function Footer() {
 
         <div className={styles.links}>
           <h3>Navigation</h3>
-          <a href="#home">Home</a>
-          <a href="#Features">Features</a>
-          <a href="#how-it-works">How It Works</a>
-          <a href="#team">Team</a>
-          <a href="#contact">Contact</a>
+          <a onClick={() => scrollTo("#home")} style={{ cursor: "pointer" }}>Home</a>
+          <a onClick={() => scrollTo("#Features")} style={{ cursor: "pointer" }}>Features</a>
+          <a onClick={() => scrollTo("#how-it-works")} style={{ cursor: "pointer" }}>How It Works</a>
+          <a onClick={() => scrollTo("#team")} style={{ cursor: "pointer" }}>Team</a>
+          <a onClick={() => scrollTo("#contact")} style={{ cursor: "pointer" }}>Contact</a>
         </div>
 
-        <div className={styles.social}>
+         <div className={styles.social}>
           <h3>Connect</h3>
           <a href="https://www.instagram.com/axacrate_technologies/" target="_blank" rel="noopener noreferrer">Instagram</a>
           <a href="https://www.linkedin.com/company/axacrate-technologies/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
