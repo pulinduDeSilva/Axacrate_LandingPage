@@ -16,6 +16,8 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 function App() {
   useEffect(() => {
+    window.scrollTo(0, 0);
+    
     // @ts-ignore
     import('./assets/cursor.js').then(() => {});
 
