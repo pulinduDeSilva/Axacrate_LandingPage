@@ -100,6 +100,14 @@
 }
 
 /* Mobile: stack everything, hide the centre line */
+
+@media (max-width: 860px) {
+  .steps { max-width: 600px; }
+  .step, .step-reverse { grid-template-columns: 1fr 48px 1fr; }
+  .step .step-content { padding-right: 1.5rem; }
+  .step-reverse .step-content { padding-left: 1.5rem; }
+}
+
 @media (max-width: 640px) {
   .workflow-section::before { display: none; }
 
