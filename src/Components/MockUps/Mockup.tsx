@@ -19,7 +19,7 @@ const pills = [
 
 function Mockups() {
   useGSAP(() => {
-    const split = new SplitText("#mockupTitle", { type: "chars" });
+    const split = new SplitText("#mockupTitle", { type: "words, chars" });
     gsap.fromTo(
       split.chars,
       { opacity: 0, yPercent: 130 },
