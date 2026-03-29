@@ -1,6 +1,9 @@
 import styles from "./Team.module.css";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(SplitText);
 import daniru from "../../assets/daniru.jpg";
 import ahintha from "../../assets/ahintha.jpg";
 import sheshan from "../../assets/sheshan.jpeg";
@@ -19,6 +22,25 @@ const members = [
 
 function Team() {
   useGSAP(() => {
+    const split = new SplitText("#teamTitle", { type: "chars" });
+    gsap.fromTo(
+      split.chars,
+      { opacity: 0, yPercent: 130 },
+      {
+        opacity: 1,
+        yPercent: 0,
+        duration: 1,
+        ease: "back.out",
+        stagger: 0.04,
+        scrollTrigger: {
+          trigger: "#teamTitle",
+          start: "top 80%",
+          end: "bottom 70%",
+          scrub: 1.2,
+        },
+      }
+    );
+
     gsap.fromTo(
       `.${styles.card}`,
       { opacity: 0, y: 30 },
@@ -40,7 +62,7 @@ function Team() {
     <section id="team" className={styles["team-section"]}>
       <div className={styles["team-header"]}>
         <span className="section-label">The Team</span>
-        <h2 className="section-title">Built by engineers, for warehouses</h2>
+        <h2 className="section-title" id="teamTitle">Built by engineers, for engineers</h2>
         <p className="section-subtitle" style={{ margin: "0 auto" }}>
           A multidisciplinary team combining hardware, firmware, cloud, and product expertise.
         </p>
