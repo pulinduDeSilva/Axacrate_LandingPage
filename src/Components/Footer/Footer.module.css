@@ -1,83 +1,103 @@
 .footer {
   width: 100%;
-  background: #181818ea;
-  backdrop-filter: blur(50px);
-  color: white;
-  padding: 40px 0;
+  background: #0a0a0a;
+  border-top: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 4rem 0 2rem;
 }
 
 .content {
-  width: 85%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  width: min(1100px, 88%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.left {
-  max-width: 300px;
-}
+.left {}
 
 .logo {
-  font-family: "Audiowide", sans-serif;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
 
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 10px;
+.logo span {
+  color: var(--accent);
 }
 
 .desc {
-  font-size: 20px;
-  opacity: 0.7;
-  line-height: 1.6;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 280px;
+  margin-bottom: 1.2rem;
+}
+
+.tagline {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
 .links,
 .social {
   display: flex;
   flex-direction: column;
+  gap: 0.2rem;
 }
 
 .links h3,
 .social h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+  font-weight: 600;
 }
 
 .links a,
 .social a {
-  color: #e0e0e0;
-  text-decoration: none;
-  margin-bottom: 6px;
-  transition: 0.3s ease;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  padding: 0.25rem 0;
+  transition: color 0.2s;
 }
 
 .links a:hover,
 .social a:hover {
-  color: #ffffff;
-  transform: translateX(5px);
+  color: var(--accent);
 }
 
 .bottom {
-  width: 100%;
-  text-align: center;
-  border-top: 1px solid #222;
-  padding-top: 15px;
-  margin-top: 30px;
-  font-size: 14px;
-  opacity: 0.6;
+  width: min(1100px, 88%);
+  margin: 2rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-/* Mobile */
+.bottom p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
 @media (max-width: 768px) {
   .content {
-    flex-direction: column;
-    gap: 30px;
-    text-align: center;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
-
-  .links a:hover,
-  .social a:hover {
-    transform: none;
+  .bottom {
+    flex-direction: column;
+    text-align: center;
   }
 }
