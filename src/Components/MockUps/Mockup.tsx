@@ -1,6 +1,5 @@
 import style from "./Mockup.module.css";
-import mac from "../../assets/moackup mac.png";
-import mask from "../../assets/mockupMask.png";
+import mac from "../../assets/mockup_mac.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/SplitText";
@@ -84,7 +83,7 @@ function Mockups() {
       <div className={style.wrapper}>
         <div className={style["mockup-frame"]}>
           <img className={style.mockup} src={mac} alt="Axacrate web portal on MacBook" loading="lazy" />
-          <img className={style.mockupMask} src={mask} alt="" loading="lazy" />
+          
         </div>
       </div>
 
