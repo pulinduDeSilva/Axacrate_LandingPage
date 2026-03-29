@@ -1,11 +1,10 @@
 * {
-    scroll-behavior: smooth;
-
+  scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #smooth-wrapper {
@@ -26,17 +25,16 @@ body {
   height: 100vh;
   z-index: -1;
   filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 
 .head-pos {
   position: fixed;
-  z-index: 10;
+  width: 100%;
+  z-index: 100;
 }
 
-
-@media(max-width: 1024px) {
-    .bg-cursor {
-        display: none;
-    }
+@media (max-width: 1024px) {
+  .bg-cursor {
+    display: none;
+  }
 }

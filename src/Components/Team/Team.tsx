@@ -1,109 +1,86 @@
-import styles from "./Team.module.css"
+import styles from "./Team.module.css";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(SplitText);
 import daniru from "../../assets/daniru.jpg";
 import ahintha from "../../assets/ahintha.jpg";
 import sheshan from "../../assets/sheshan.jpeg";
-import aatif from "../../assets/aatif.png";
+import aatif from "../../assets/aatif.jpeg";
 import bhanuka from "../../assets/bhanuka.jpeg";
 import pulindu from "../../assets/pulindu.jpeg";
 
+const members = [
+  { name: "Isith Bhanuka",      role: "Project Lead | Full Stack Developer", img: bhanuka },
+  { name: "Daniru Senarathne",  role: "Backend Lead | Full Stack Developer",      img: daniru  },
+  { name: "Aatif Noor",         role: "Hardware Lead | Full Stack Developer",     img: aatif   },
+  { name: "Pulindu Vidmal",     role: "Frontend Lead | Full Stack Developer",     img: pulindu },
+  { name: "Ahintha Jayamanna",  role: "Database Lead | Full Stack Developer",     img: ahintha },
+  { name: "Sheshan Thisal",     role: "DevOps Lead | Full Stack Developer",      img: sheshan },
+];
 
-function Features() {
-
+function Team() {
   useGSAP(() => {
-
-
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 769px)", () => { //desktop
-      const tl = gsap.timeline({
+    const split = new SplitText("#teamTitle", { type: "chars" });
+    gsap.fromTo(
+      split.chars,
+      { opacity: 0, yPercent: 130 },
+      {
+        opacity: 1,
+        yPercent: 0,
+        duration: 1,
+        ease: "back.out",
+        stagger: 0.04,
         scrollTrigger: {
-          trigger: "." + styles["team-section"],
-          start: "top 60%",
-          end: "+=500",
-          scrub: true,
-        }
-      })
+          trigger: "#teamTitle",
+          start: "top 80%",
+          end: "bottom 70%",
+          scrub: 1.2,
+        },
+      }
+    );
 
-      tl.fromTo("." + styles["team"], { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power1.inout" });
-    })
-
-    mm.add("(max-width: 768px)", () => { //mobile
-      const tl = gsap.timeline({
+    gsap.fromTo(
+      `.${styles.card}`,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
         scrollTrigger: {
-          trigger: "." + styles["team-section"],
-          start: "top 60%",
-          end: "+=500",
-          scrub: true,     
-        }
-      })
-
-      tl.fromTo("." + styles["team"], { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power1.inout" });
-    })
-
-  }, [])
+          trigger: `.${styles["team-section"]}`,
+          start: "top 65%",
+        },
+      }
+    );
+  });
 
   return (
     <section id="team" className={styles["team-section"]}>
-      <div className={styles["wrapper-team"]}>
-        <h2>Team Behind Development</h2>
-
-
-        <div className={styles["team"]}>
-
-          <div className={styles["card"]}>
-            <img src={bhanuka} alt="John" />
-            <div className="card-content">
-              <h1>Isith Bhanuka</h1>
-              <p className={styles["profile"]}></p>
-            </div>
-          </div>
-
-          <div className={styles["card"]}>
-            <img src={daniru} alt="John" />
-            <div className="card-content">
-              <h1>Daniru Senarathne</h1>
-              <p className={styles["profile"]}></p>
-            </div>
-          </div>
-
-          <div className={styles["card"]}>
-            <img src={aatif} alt="John" />
-            <div className="card-content">
-              <h1>Aatif Noor</h1>
-              <p className={styles["bhanuka"]}></p>
-            </div>
-          </div>
-
-          <div className={styles["card"]}>
-            <img src={pulindu} alt="John" />
-            <div className="card-content">
-              <h1>Pulindu Vidmal</h1>
-              <p className={styles["profile"]}></p>
-            </div>
-          </div>
-
-          <div className={styles["card"]}>
-            <img src={ahintha} alt="John" />
-            <div className="card-content">
-              <h1>Ahintha jayamanna</h1>
-              <p className={styles["profile"]}></p>
-            </div>
-          </div>
-
-          <div className={styles["card"]}>
-            <img src={sheshan} alt="John" />
-            <div className="card-content">
-              <h1>Sheshan Thisal</h1>
-              <p className={styles["profile"]}></p>
-            </div>
-          </div>
-
-        </div>
+      <div className={styles["team-header"]}>
+        <span className="section-label">The Team</span>
+        <h2 className="section-title" id="teamTitle">Built by engineers, for engineers</h2>
+        <p className="section-subtitle" style={{ margin: "0 auto" }}>
+          A multidisciplinary team combining hardware, firmware, cloud, and product expertise.
+        </p>
       </div>
 
+      <div className={styles.team}>
+        {members.map((m) => (
+          <div className={styles.card} key={m.name}>
+            <img src={m.img} alt={m.name} />
+            <div className={styles["card-content"]}>
+              <h1>{m.name}</h1>
+              <p>{m.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
 
-export default Features;
+export default Team;

@@ -1,43 +1,140 @@
-.wrapper {
-    position: relative;
-    height: 100%;
-    perspective: 500px;
-    background-color: black;
+.workflow-section {
+  padding: 8rem 2rem;
+  background: #000;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero h1 {
-    font-size: 300px;
-    margin: 0;
+.workflow-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--border-accent) 20%, var(--border-accent) 80%, transparent);
 }
 
-
-.hero p {
-    font-size: 100px;
-    margin: 0;
+.header {
+  text-align: center;
+  margin-bottom: 6rem;
+  position: relative;
 }
 
-.content-scroll1 {
-    height: 100vh;
-    background-color: rgb(39, 39, 39);
+.steps {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  position: relative;
 }
 
-.content-scroll2 {
-    height: 100vh;
-
-    background-color: rgb(65, 67, 68);
-
+/* Each step: content — dot — spacer (spacer mirrors the content width) */
+.step {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: center;
 }
 
-.content-scroll3 {
-    height: 100vh;
+/* Odd steps: content on LEFT, dot in centre, spacer on right */
+.step .step-content { grid-column: 1; text-align: right; padding-right: 2.5rem; }
+.step .step-node    { grid-column: 2; }
+.step .step-spacer  { grid-column: 3; }
 
-    background-color: rgb(31, 32, 32);
+/* Even steps (reverse): spacer on left, dot in centre, content on RIGHT */
+.step-reverse .step-content { grid-column: 3; grid-row: 1; text-align: left;  padding-right: 0; padding-left: 2.5rem; }
+.step-reverse .step-node    { grid-column: 2; grid-row: 1; }
+.step-reverse .step-spacer  { grid-column: 1; grid-row: 1; }
+
+.step-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.content {
-    overflow: hidden;
+.step-content:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 32px rgba(255, 138, 46, 0.08);
 }
 
-.hero {
-    
+.step-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.step-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.step-node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 1.5px solid var(--border-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+/* Mobile: stack everything, hide the centre line */
+
+@media (max-width: 860px) {
+  .steps { max-width: 600px; }
+  .step, .step-reverse { grid-template-columns: 1fr 48px 1fr; }
+  .step .step-content { padding-right: 1.5rem; }
+  .step-reverse .step-content { padding-left: 1.5rem; }
+}
+
+@media (max-width: 640px) {
+  .workflow-section::before { display: none; }
+
+  .step,
+  .step-reverse {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto;
+  }
+
+  .step .step-content,
+  .step-reverse .step-content {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+    padding-left: 1.2rem;
+    padding-right: 0;
+  }
+
+  .step .step-node,
+  .step-reverse .step-node {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .step .step-spacer,
+  .step-reverse .step-spacer {
+    display: none;
+  }
 }

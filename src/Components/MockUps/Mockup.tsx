@@ -1,96 +1,103 @@
-import style from "./Mockup.module.css"
-import mac from "../../assets/moackup mac.png"
-import mask from "../../assets/mockupMask.png"
+import style from "./Mockup.module.css";
+import mac from "../../assets/moackup mac.png";
+import mask from "../../assets/mockupMask.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useState } from "react";
+import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/all";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
+const pills = [
+  "Live inventory dashboard",
+  "Zone alert feed",
+  "Tag health reports",
+  "Multi-site support",
+  "Role-based access",
+  "Export to CSV / ERP",
+];
 
 function Mockups() {
-    const [loaded, setLoaded] = useState(false);
+  useGSAP(() => {
+    const split = new SplitText("#mockupTitle", { type: "chars" });
+    gsap.fromTo(
+      split.chars,
+      { opacity: 0, yPercent: 130 },
+      {
+        opacity: 1,
+        yPercent: 0,
+        duration: 1,
+        ease: "back.out",
+        stagger: 0.04,
+        scrollTrigger: {
+          trigger: "#mockupTitle",
+          start: "top 80%",
+          end: "bottom 70%",
+          scrub: 1.2,
+        },
+      }
+    );
 
-    useGSAP(() => {
-        ScrollTrigger.refresh();
-    }, []);
+    gsap.fromTo(
+      `.${style["mockup-frame"]}`,
+      { opacity: 0, y: 40, scale: 0.97 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: `.${style["section-mockup"]}`,
+          start: "top 65%",
+        },
+      }
+    );
 
-    useGSAP(() => {
-    const mm = gsap.matchMedia();
+    gsap.fromTo(
+      `.${style.pill}`,
+      { opacity: 0, y: 12 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: `.${style["feature-pills"]}`,
+          start: "top 85%",
+        },
+      }
+    );
+  });
 
-    // Desktop
-    mm.add("(min-width: 1400px)", () => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "." + style["section-mockup"],
-                start: "top 50%",
-                end: "top 0%",
-                scrub: true,
-                //markers: true
-            }
-        });
+  return (
+    <section className={style["section-mockup"]}>
+      <div className={style["mockup-header"]}>
+        <span className="section-label">Web Portal</span>
+        <h2 className="section-title" id="mockupTitle">Command your warehouse from anywhere</h2>
+        <p className={style["mockup-desc"]}>
+          The Axacrate web portal gives every stakeholder — floor managers, logistics leads, and executives — a live view of inventory, alerts, and tag health on any device.
+        </p>
+      </div>
 
-        tl.fromTo("#mockup-text", { y: 80 }, { y: -220 });
-        
-    });
+      <div className={style.wrapper}>
+        <div className={style["mockup-frame"]}>
+          <img className={style.mockup} src={mac} alt="Axacrate web portal on MacBook" loading="lazy" />
+          <img className={style.mockupMask} src={mask} alt="" loading="lazy" />
+        </div>
+      </div>
 
-    // Laptop
-    mm.add("(min-width: 1024px) and (max-width: 1399px)", () => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "." + style["section-mockup"],
-                start: "top 70%",
-                end: "top 20%",
-                scrub: true,
-                //markers: true
-            }
-        });
-
-        tl.fromTo("#mockup-text", { y: 80 }, { y: -160 });
-    });
-
-    // Tablet
-    mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "." + style["section-mockup"],
-                start: "top 80%",
-                end: "top 30%",
-                scrub: true,
-                //markers: true
-            }
-        });
-
-        tl.fromTo("#mockup-text", { y: 60 }, { y: -120 });
-    });
-
-    // Mobile
-    mm.add("(max-width: 767px)", () => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "." + style["section-mockup"],
-                start: "top 100%",
-                end: "top 60%",
-                scrub: true,
-                //markers: true
-            }
-        });
-
-        tl.fromTo("#mockup-text", { y: 40 }, { y: -100 });
-    });
-});
-
-    return <>
-        <section className={style["section-mockup"]}>
-            <div className={style["wrapper"]}>
-                <img className={style["mockupMask"]} src={mask} alt="mac book mockup" loading="lazy" />
-                <div className={style["text-wrapper"]}>
-                    <h1 id="mockup-text">Web Portal</h1>
-                </div>
-                <img className={style["mockup"]} src={mac} alt="mac book mockup" loading="lazy" />
-            </div>
-        </section>
-    </>
+      <div className={style["feature-pills"]}>
+        {pills.map((p) => (
+          <span className={style.pill} key={p}>
+            <span className={style["pill-dot"]} />
+            {p}
+          </span>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export default Mockups;
