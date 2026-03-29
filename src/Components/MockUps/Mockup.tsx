@@ -3,9 +3,10 @@ import mac from "../../assets/moackup mac.png";
 import mask from "../../assets/mockupMask.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/all";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const pills = [
   "Live inventory dashboard",
@@ -18,6 +19,25 @@ const pills = [
 
 function Mockups() {
   useGSAP(() => {
+    const split = new SplitText("#mockupTitle", { type: "chars" });
+    gsap.fromTo(
+      split.chars,
+      { opacity: 0, yPercent: 130 },
+      {
+        opacity: 1,
+        yPercent: 0,
+        duration: 1,
+        ease: "back.out",
+        stagger: 0.04,
+        scrollTrigger: {
+          trigger: "#mockupTitle",
+          start: "top 80%",
+          end: "bottom 70%",
+          scrub: 1.2,
+        },
+      }
+    );
+
     gsap.fromTo(
       `.${style["mockup-frame"]}`,
       { opacity: 0, y: 40, scale: 0.97 },
@@ -55,7 +75,7 @@ function Mockups() {
     <section className={style["section-mockup"]}>
       <div className={style["mockup-header"]}>
         <span className="section-label">Web Portal</span>
-        <h2 className="section-title">Command your warehouse from anywhere</h2>
+        <h2 className="section-title" id="mockupTitle">Command your warehouse from anywhere</h2>
         <p className={style["mockup-desc"]}>
           The Axacrate web portal gives every stakeholder — floor managers, logistics leads, and executives — a live view of inventory, alerts, and tag health on any device.
         </p>
