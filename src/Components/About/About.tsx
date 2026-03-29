@@ -49,20 +49,20 @@ function Features() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const textSplit = new SplitText("#aboutText", { type: "words" });
+    const textSplit = new SplitText("#aboutText", { type: "chars" });
     gsap.fromTo(
-      textSplit.words,
-      { opacity: 0, yPercent: 80 },
+      textSplit.chars,
+      { opacity: 0, yPercent: 130 },
       {
         opacity: 1,
         yPercent: 0,
         duration: 1,
-        ease: "back.out(1.2)",
-        stagger: 0.08,
+        ease: "back.out",
+        stagger: 0.04,
         scrollTrigger: {
           trigger: "#about-section",
-          start: "top 70%",
-          end: "bottom 80%",
+          start: "top 80%",
+          end: "bottom 70%",
           scrub: 1.2,
         },
       }
