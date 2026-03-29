@@ -1,9 +1,5 @@
-/* Global box-sizing */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-/* Header */
 header {
   position: fixed;
   display: flex;
@@ -12,65 +8,78 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1rem 2rem;
-  z-index: 10;
+  padding: 1.1rem 2.5rem;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
 }
 
-/* Left side */
 .header-left {
   display: flex;
   align-items: center;
-}
-
-a {
-  z-index: 10;
+  gap: 0.6rem;
 }
 
 .logo-img {
-  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-left: 10px;
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
 }
 
-/* Navigation links */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 nav a {
-  margin-left: 2rem;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: color 0.3s ease;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
 }
 
 nav a:hover {
-  color: #fff;
+  color: var(--text-primary);
+  background: var(--surface-hover);
 }
 
+.nav-cta {
+  margin-left: 0.8rem;
+  background: var(--accent) !important;
+  color: #000 !important;
+  font-weight: 600 !important;
+  padding: 0.45rem 1.1rem !important;
+  border-radius: 7px;
+  transition: box-shadow 0.2s, background 0.2s !important;
+}
 
-/* Responsive adjustments */
+.nav-cta:hover {
+  background: #ffa560 !important;
+  box-shadow: 0 0 18px var(--accent-glow);
+}
+
 @media (max-width: 768px) {
-
-  nav a {
-    margin-left: 1rem;
-    font-size: 0.9rem;
-  }
-
-  .logo {
-    font-size: 1.3rem;
-  }
+  header { padding: 0.9rem 1.2rem; }
+  .logo-text { display: none; }
+  nav a { font-size: 0.78rem; padding: 0.35rem 0.55rem; }
+  .nav-cta { margin-left: 0.4rem; }
 }
 
 @media (max-width: 480px) {
-
-  .header-left {
-    margin-bottom: 0.5rem;
-  }
-
-  nav a {
-    margin: 0.3rem 0.3rem;
-  }
+  nav a:not(.nav-cta) { display: none; }
 }
