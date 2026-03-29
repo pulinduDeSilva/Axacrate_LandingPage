@@ -65,7 +65,7 @@
 
 .card:hover {
   border-color: var(--border-accent);
-  box-shadow: 0 24px 60px rgba(0,229,255,0.06);
+  box-shadow: 0 24px 60px #ff6f000c;
 }
 
 .card-image-wrap {
