@@ -1,5 +1,10 @@
 import React, { useState, ChangeEvent } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
 import styles from "./Contact.module.css";
+
+gsap.registerPlugin(SplitText);
 
 interface FormData {
   name: string;
@@ -32,7 +37,6 @@ const ContactUs: React.FC = () => {
       // Wire to your EmailJS / Formspree endpoint here.
       // Example: await emailjs.send('SERVICE_ID', 'TEMPLATE_ID', formData, 'PUBLIC_KEY');
       await new Promise((res) => setTimeout(res, 1000)); // ← replace with real call
-      console.log("Form submitted:", formData);
       setStatus({ msg: "Message sent! We'll be in touch within 24 hours.", type: "success" });
       setFormData({ name: "", company: "", email: "", message: "" });
     } catch {
@@ -42,12 +46,33 @@ const ContactUs: React.FC = () => {
     }
   };
 
+  useGSAP(() => {
+    const split = new SplitText("#contactTitle", { type: "words,chars"  });
+    gsap.fromTo(
+      split.chars,
+      { opacity: 0, yPercent: 130 },
+      {
+        opacity: 1,
+        yPercent: 0,
+        duration: 1,
+        ease: "back.out",
+        stagger: 0.04,
+        scrollTrigger: {
+          trigger: "#contactTitle",
+          start: "top 80%",
+          end: "bottom 70%",
+          scrub: 1.2,
+        },
+      }
+    );
+  });
+
   return (
     <section id="contact" className={styles["contact-section"]}>
       <div className={styles.contactContainer}>
         <div className={styles["contact-header"]}>
           <span className="section-label">Get in Touch</span>
-          <h2 className="section-title">Ready to transform your warehouse?</h2>
+          <h2 className="section-title" id="contactTitle">Ready to transform your warehouse?</h2>
           <p>Tell us about your facility and we'll set up a live demo tailored to your workflow.</p>
         </div>
 
