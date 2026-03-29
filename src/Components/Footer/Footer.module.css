@@ -93,6 +93,7 @@
 
 @media (max-width: 768px) {
   .content {
+    padding: 0 1rem 2rem;
     grid-template-columns: 1fr;
     gap: 2rem;
   }
