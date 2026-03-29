@@ -95,11 +95,8 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 1024px) {
-  .mockup { width: 130%; margin-left: -15%; }
-}
-
-@media (max-width: 724px) {
-  .mockup { width: 180%; margin-left: -40%; }
+@media (max-width: 768px) {
   .section-mockup { padding: 4rem 1rem 6rem; }
+  .wrapper { overflow: hidden; }
+  .mockup { width: 100%; margin-left: 0; }
 }
