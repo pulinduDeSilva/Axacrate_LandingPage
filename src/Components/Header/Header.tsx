@@ -24,7 +24,7 @@ function Header() {
         <a onClick={() => scrollTo("#home")} style={{ cursor: "pointer" }}>
           <img className={styles["logo-img"]} src={logo} alt="Axacrate logo" />
         </a>
-        <span className={styles["logo-text"]}>AXACRATE</span>
+        <span className={styles["logo-text"]}>AXA<span style={{ color: "#FF8A2E" }}>CRATE</span></span>
       </div>
 
       <nav>
