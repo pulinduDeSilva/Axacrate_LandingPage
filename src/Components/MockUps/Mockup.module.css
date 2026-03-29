@@ -1,81 +1,105 @@
 .section-mockup {
-    height: 100%;
-    
-    z-index: 1;
-    background-color: rgb(0, 0, 0);
+  position: relative;
+  background: #000;
+  padding: 6rem 2rem 8rem;
+  overflow: hidden;
+}
+
+.mockup-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.mockup-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.75;
 }
 
 .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.mockup-frame {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 40px 100px rgba(0, 229, 255, 0.06), 0 0 0 1px rgba(0,229,255,0.08);
 }
 
 .mockup {
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-    filter: grayscale(50%);
-
-    mask-image: linear-gradient(to top, black, transparent 80%);
-    -webkit-mask-image: linear-gradient(to top, black, transparent 80%);
-
-    z-index: 1;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.9) saturate(0.85);
 }
-
-
 
 .mockupMask {
-    position: absolute;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-    aspect-ratio: 16 / 9;
-    z-index: 3;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.text-wrapper {
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
+.feature-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 2;
 }
 
-.wrapper h1 {
-    font-size: clamp(2.5rem, 0.0444rem + 11.4213vw, 13.75rem);
-    color: white;
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.45rem 1rem;
+  transition: border-color 0.2s, color 0.2s;
 }
 
+.pill:hover {
+  border-color: var(--border-accent);
+  color: var(--text-primary);
+}
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
 
 @media (max-width: 1024px) {
-    .wrapper h1 {}
-
-    .mockupMask {
-        width: 130vw;
-    }
-
-    .mockup {
-        width: 130vw;
-    }
+  .mockup { width: 130%; margin-left: -15%; }
 }
 
 @media (max-width: 724px) {
-    .wrapper h1 {}
-
-    .mockupMask {
-        width: 180vw;
-    }
-
-    .mockup {
-        width: 180vw;
-    }
+  .mockup { width: 180%; margin-left: -40%; }
+  .section-mockup { padding: 4rem 1rem 6rem; }
 }
