@@ -62,7 +62,7 @@ function Team() {
     <section id="team" className={styles["team-section"]}>
       <div className={styles["team-header"]}>
         <span className="section-label">The Team</span>
-        <h2 className="section-title" id="teamTitle">Built by engineers, for engineers</h2>
+        <h2 className="section-title" id="teamTitle">Built by engineers, for warehouses</h2>
         <p className="section-subtitle" style={{ margin: "0 auto" }}>
           A multidisciplinary team combining hardware, firmware, cloud, and product expertise.
         </p>
