@@ -8,7 +8,8 @@
 .workflow-section::before {
   content: '';
   position: absolute;
-  top: 0; left: 50%;
+  top: 0;
+  left: 50%;
   transform: translateX(-50%);
   width: 1px;
   height: 100%;
@@ -22,31 +23,30 @@
 }
 
 .steps {
-  max-width: 800px;
+  max-width: 860px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 3rem;
   position: relative;
 }
 
+/* Each step: content — dot — spacer (spacer mirrors the content width) */
 .step {
   display: grid;
   grid-template-columns: 1fr 60px 1fr;
   align-items: center;
-  gap: 0;
-  margin-bottom: 3rem;
 }
 
-.step-left {
-  text-align: right;
-  padding-right: 2.5rem;
-}
+/* Odd steps: content on LEFT, dot in centre, spacer on right */
+.step .step-content { grid-column: 1; text-align: right; padding-right: 2.5rem; }
+.step .step-node    { grid-column: 2; }
+.step .step-spacer  { grid-column: 3; }
 
-.step-right {
-  text-align: left;
-  padding-left: 2.5rem;
-}
+/* Even steps (reverse): spacer on left, dot in centre, content on RIGHT */
+.step-reverse .step-content { grid-column: 3; grid-row: 1; text-align: left;  padding-right: 0; padding-left: 2.5rem; }
+.step-reverse .step-node    { grid-column: 2; grid-row: 1; }
+.step-reverse .step-spacer  { grid-column: 1; grid-row: 1; }
 
 .step-content {
   background: var(--surface);
@@ -58,7 +58,7 @@
 
 .step-content:hover {
   border-color: var(--border-accent);
-  box-shadow: 0 8px 32px rgba(0, 229, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(255, 138, 46, 0.08);
 }
 
 .step-title {
@@ -78,7 +78,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .step-dot {
@@ -97,28 +96,37 @@
   letter-spacing: 0.05em;
   position: relative;
   z-index: 1;
+  flex-shrink: 0;
 }
 
-/* Alternate left/right */
-.step:nth-child(even) .step-left { order: 3; text-align: left; padding-right: 0; padding-left: 2.5rem; }
-.step:nth-child(even) .step-node { order: 2; }
-.step:nth-child(even) .step-right { order: 1; text-align: right; padding-left: 0; padding-right: 2.5rem; }
-
+/* Mobile: stack everything, hide the centre line */
 @media (max-width: 640px) {
   .workflow-section::before { display: none; }
-  .step {
+
+  .step,
+  .step-reverse {
+    display: grid;
     grid-template-columns: 40px 1fr;
-    gap: 0;
+    grid-template-rows: auto;
   }
-  .step-left,
-  .step:nth-child(even) .step-right { display: none; }
-  .step-right,
-  .step:nth-child(even) .step-left {
-    order: 2;
+
+  .step .step-content,
+  .step-reverse .step-content {
+    grid-column: 2;
+    grid-row: 1;
     text-align: left;
     padding-left: 1.2rem;
     padding-right: 0;
   }
-  .step-node,
-  .step:nth-child(even) .step-node { order: 1; }
+
+  .step .step-node,
+  .step-reverse .step-node {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .step .step-spacer,
+  .step-reverse .step-spacer {
+    display: none;
+  }
 }

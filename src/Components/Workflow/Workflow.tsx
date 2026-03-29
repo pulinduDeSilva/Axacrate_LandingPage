@@ -51,26 +51,15 @@ function Workflow() {
 
       <div className={style.steps}>
         {steps.map((s, i) => (
-          <div className={style.step} key={i}>
-            <div className={style["step-left"]}>
-              {i % 2 === 0 && (
-                <div className={style["step-content"]}>
-                  <div className={style["step-title"]}>{s.title}</div>
-                  <div className={style["step-desc"]}>{s.desc}</div>
-                </div>
-              )}
+          <div className={`${style.step} ${i % 2 !== 0 ? style["step-reverse"] : ""}`} key={i}>
+            <div className={style["step-content"]}>
+              <div className={style["step-title"]}>{s.title}</div>
+              <div className={style["step-desc"]}>{s.desc}</div>
             </div>
             <div className={style["step-node"]}>
               <div className={style["step-dot"]}>{String(i + 1).padStart(2, "0")}</div>
             </div>
-            <div className={style["step-right"]}>
-              {i % 2 !== 0 && (
-                <div className={style["step-content"]}>
-                  <div className={style["step-title"]}>{s.title}</div>
-                  <div className={style["step-desc"]}>{s.desc}</div>
-                </div>
-              )}
-            </div>
+            <div className={style["step-spacer"]} />
           </div>
         ))}
       </div>
